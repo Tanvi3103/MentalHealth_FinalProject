@@ -1,7 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 from flask import jsonify
 import sqlite3 as lite 
+import pickle
 
+model=pickle.load(open('pickle_model.pkl','rb'))
 # Set up Flask
 app = Flask(__name__)
 
@@ -10,6 +12,10 @@ app = Flask(__name__)
 def index():
     #return render_template("index.html")
     return "Hello flask"
+
+@app.route('/Take_a_Test',methods=['POST','GET'])
+def Take_a_Test():
+    return render_template('test.html')
 
 # @app.route('/api/v1.0/data', methods=['GET'])
 # def get_data():

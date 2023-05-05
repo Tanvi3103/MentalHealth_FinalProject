@@ -7,13 +7,12 @@ with open('pickle_model.pkl', 'rb') as file:
     model = pickle.load(file)
   
 
-
 def show_predict_page():
     st.title("Prediction")
 
-    benefits_0=("I don't know","No","Not eligible for coverage","Yes") 
-    coverage_1=("I am not sure","No","Yes")
-    resources_2=("I don't know","No","Yes")
+    benefits_0=("I don't know","No","Not eligible for coverage","Yes")  #0 to 3
+    coverage_1=("I am not sure","No","Yes") # 4 to 6
+    resources_2=("I don't know","No","Yes") # 7 to 9 
     leave_3=("I don't know","Neither easy nor difficult","Somewhat difficult","Somewhat easy","Very difficult","Very easy")
     consequences_m_4=('Maybe', 'No', 'Yes')
     consequences_h_5=( 'Maybe', 'No', 'Yes', "I don't know")
@@ -46,6 +45,17 @@ def show_predict_page():
     X= np.zeros(shape=(1, 120))
 
     benefits=st.selectbox("Does your employer provide mental health benefits as part of healthcare coverage?",benefits_0)
+
+    if (benefits=="I don't know"):
+        X[0]=1
+    elif (benefits=="No"):
+        X[1]=1
+    elif (benefits=="Not eligible for coverage"):
+        X[2]=1   
+    else:
+        X[3]=1         
+
+
     coverage=st.selectbox("Do you know the options for mental health care available under your employer-provided coverage?",coverage_1)
     resources=st.selectbox("Does your employer offer resources to learn more about mental health concerns and options for seeking help?",resources_2)
     leave=st.selectbox("If a mental health issue prompted you to request a medical leave from work, asking for that leave would be:",leave_3)

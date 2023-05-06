@@ -257,140 +257,144 @@ def show_predict_page():
     elif (attitue_coworkers=="No, it has not"):
         X[70]=1  
     elif (attitue_coworkers=="Yes, I think it would"):
-        X[71]=1   
-    elif (attitue_coworkers=="Yes, I think it would"):
-        X[72]=1   
+        X[71]=1    
     else:
-        X[73]=1 
+        X[72]=1 
 
     #Q21
     willingness_to_share=st.selectbox("How willing would you be to share with friends and family that you have a mental illness?",willingness_to_share_20)
     if (willingness_to_share=="Neutral"):
-        X[74]=1
+        X[73]=1
     elif (willingness_to_share=="Not applicable to me (I do not have a mental illness)"):
-        X[75]=1
+        X[74]=1
     elif (willingness_to_share=="Not open at all"):
-        X[76]=1
+        X[75]=1
     elif (willingness_to_share=="Somewhat not open"):
-        X[77]=1   
+        X[76]=1   
     elif (willingness_to_share=="Somewhat open"):
-        X[78]=1
+        X[77]=1
     else:
-        X[79]=1   
+        X[78]=1   
 
     #Q22
     observation=st.selectbox("Have you observed or experienced an unsupportive or badly handled response to a mental health issue in your current or previous workplace?",observation_21)
     if (observation=="Maybe/Not sure"):
-        X[80]=1
+        X[79]=1
     elif (observation=="No"):
-        X[81]=1
+        X[80]=1
     elif (observation=="Yes, I experienced"):
-        X[82]=1   
+        X[81]=1   
     else:
-        X[83]=1   
+        X[82]=1   
 
     #Q23
     family_history=st.selectbox("Do you have a family history of mental illness?",family_history_22)
     if (family_history=="I don't know"):
-        X[84]=1
+        X[83]=1
     elif (family_history=="No"):
-        X[85]=1
+        X[84]=1
     else:
-        X[86]=1   
+        X[85]=1   
 
     #Q24   
     past_history=st.selectbox("Have you had a mental health disorder in the past",past_history_23)
     if (past_history=="Maybe"):
-        X[87]=1
+        X[86]=1
     elif (past_history=="No"):
-        X[88]=1   
+        X[87]=1   
     else:
-        X[89]=1   
+        X[88]=1   
 
     #Q25
     current_state=st.selectbox("Do you currently have a mental health disorder?",current_state_24)
     if (current_state=="Maybe"):
-        X[90]=1
+        X[89]=1
     elif (current_state=="No"):
-        X[91]=1   
+        X[90]=1   
     else:
-        X[92]=1  
+        X[91]=1  
 
     #Q27
     interference=st.selectbox("If you have a mental health issue, do you feel that it interferes with your work when being treated effectively?",interference_27)
     if (interference=="Never"):
-        X[93]=1
+        X[92]=1
     elif (interference=="Not applicable to me"):
-        X[94]=1
+        X[93]=1
     elif (interference=="Often"):
-        X[95]=1 
+        X[94]=1 
     elif (interference=="Rarely"):
-        X[96]=1   
+        X[95]=1   
     else:
-        X[97]=1   
+        X[96]=1   
 
     #Q28
     interference_when_not_trated=st.selectbox("If you have a mental health issue, do you feel that it interferes with your work when NOT being treated effectively?",interference_when_not_trated_28)
     if (interference_when_not_trated=="Never"):
-        X[98]=1
+        X[97]=1
     elif (interference_when_not_trated=="Not applicable to me"):
-        X[99]=1
+        X[98]=1
     elif (interference_when_not_trated=="Often"):
-        X[100]=1 
+        X[99]=1 
     elif (interference_when_not_trated=="Rarely"):
-        X[101]=1   
+        X[100]=1   
     else:
-        X[102]=1 
+        X[101]=1 
 
     #Q29
     gender=st.selectbox("What is your gender?",gender_29)
     if (gender=="Male"):
-        X[103]=1
+        X[102]=1
     elif (gender=="Female"):
-        X[104]=1
+        X[103]=1
     else:
-        X[105]=1   
+        X[104]=1   
 
     #Q30
     country_of_residence=st.selectbox("What country do you live in?",country_of_residence_30)
     if (country_of_residence=="Australia"):
-        X[106]=1
+        X[105]=1
     elif (country_of_residence=="Canada"):
-        X[107]=1
+        X[106]=1
     elif (country_of_residence=="Germany"):
-        X[108]=1
+        X[107]=1
     elif (country_of_residence=="Netherlands"):
-        X[109]=1 
+        X[108]=1 
     elif (country_of_residence=="Other"):
-        X[110]=1 
+        X[109]=1 
     elif (country_of_residence=="United Kingdom"):
-        X[111]=1   
+        X[110]=1   
     else:
-        X[112]=1   
+        X[111]=1   
 
     #Q31
     country_of_work=st.selectbox("What country do you work in?",country_of_work_31)
     if (country_of_work=="Australia"):
-        X[113]=1
+        X[112]=1
     elif (country_of_work=="Canada"):
-        X[114]=1
+        X[113]=1
     elif (country_of_residence=="Germany"):
-        X[115]=1
+        X[114]=1
     elif (country_of_work=="Netherlands"):
-        X[116]=1 
+        X[115]=1 
     elif (country_of_work=="Other"):
+        X[116]=1 
+    elif (country_of_work=="Sweden"):
         X[117]=1 
     elif (country_of_work=="United Kingdom"):
-        X[119]=1   
+        X[118]=1   
     else:
-        X[120]=1   
+        X[119]=1   
 
     final_arr=[X]
 
     pred= st.button("predict")
 
     if pred:
-        pred = model.predict(final_arr)
-
-        st.subheader(f"The prediction is {pred}")
+        pred = model.predict([X])
+        st.subheader(f"The prediction is {pred[0]}")
+        pred = model.predict_proba(final_arr)
+        print(pred)
+        print(pred.shape)
+        txt="You have {:%} chance of having a mental health disorder."
+        st.subheader(txt.format(pred[0,1]))
         

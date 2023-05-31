@@ -10,7 +10,8 @@ with open('pickle_model.pkl', 'rb') as file:
 def show_predict_page():
 
     # Title 
-    st.header("Take a quick test")
+    st.header(":violet[Take a quick test]")
+    st.image("Resources/explore_brain.jpg")
 
     benefits_0=("I don't know","No","Not eligible for coverage","Yes")  #0 to 3
     coverage_1=("I am not sure","No","Yes") # 4 to 6
@@ -363,7 +364,7 @@ def show_predict_page():
         X[111]=1   
 
     #Q31
-    country_of_work=st.radio("What country do you work in?",country_of_work_31)
+    country_of_work=st.selectbox("What country do you work in?",country_of_work_31)
     if (country_of_work=="Australia"):
         X[112]=1
     elif (country_of_work=="Canada"):
@@ -390,8 +391,7 @@ def show_predict_page():
         pred = model.predict_proba(final_arr)
         print(pred)
         print(pred.shape)
-        st.subheader(pred_1)
-        txt="You have {:%} chance of having a mental health disorder."
+        txt=":violet[You have {:%} chance of having a mental health disorder.]"
         st.subheader(txt.format(pred[0,1]))
         
 

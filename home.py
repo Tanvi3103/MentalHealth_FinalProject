@@ -3,7 +3,7 @@ import streamlit as st
 def show_home_page():
 
     with st.container():
-        st.subheader(":violet[Mental health Predictor]")
+        st.subheader(":violet[Mental health Predictor for Employees]")
 
     st.header("**:violet[Welcome!]**")
     #st.divider()

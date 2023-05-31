@@ -24,6 +24,6 @@ def show_home_page():
 
     st.write("  ")
 
-    st.divider()
+    #st.divider()
     with st.container():
         st.caption("A project by B.Tech EXTC students.")

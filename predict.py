@@ -386,13 +386,13 @@ def show_predict_page():
     pred= st.button("predict")
 
     if pred:
-        pred_1 = model.predict(final_arr)
-        pred = model.predict_proba(final_arr)
-        print(pred)
-        print(pred.shape)
-        st.subheader(pred_1)
+        pred_1 = model.predict_proba(final_arr)
+        #pred = model.predict_proba(final_arr)
+        #print(pred_1)
+        print(pred_1.shape)
+        #st.subheader(pred_1([0][0]))
         txt="You have {:%} chance of having a mental health disorder."
-        st.subheader(txt.format(pred[0,1]))
+        #st.subheader(txt.format(pred_1))
         
 
         

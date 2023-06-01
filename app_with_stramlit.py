@@ -2,6 +2,7 @@ import streamlit as st
 from explore import show_explore_page
 from predict import show_predict_page
 from home import show_home_page
+import sklearn
 
 page = st.sidebar.selectbox("**:black[MENU]**", ("HOME","PREDICT", "EXPLORE"))
 

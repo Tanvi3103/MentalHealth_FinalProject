@@ -38,7 +38,7 @@ It showcases practical skills in Python, machine learning, and building usable d
 ---
 
 ## 📂 Project Structure
-
+```
 ├── app_with_streamlit.py # Streamlit web app
 ├── cleaning_data.ipynb # Data preprocessing
 ├── Machine_Learning_Model.ipynb # Model training & evaluation
@@ -46,6 +46,7 @@ It showcases practical skills in Python, machine learning, and building usable d
 ├── pickle_model.pkl # Saved ML model
 ├── mental_health.db # Database
 ├── requirements.txt # Dependencies
+```
 
 
 ---
@@ -57,6 +58,7 @@ git clone https://github.com/Tanvi3103/MentalHealth_FinalProject.git
 cd MentalHealth_FinalProject
 pip install -r requirements.txt
 streamlit run app_with_streamlit.py
+```
 
 ## 🧠 What This Project Shows
 
